@@ -50,14 +50,14 @@ internal class CalendarDayAdapter(private val mCalendarPageAdapter: CalendarPage
 
         val dayLabel = view!!.findViewById(R.id.dayLabel) as TextView
         val dayIcon = view.findViewById(R.id.dayIcon) as ImageView
+        val dayIcon2 = view.findViewById(R.id.dayIcon2) as ImageView
+        val dayIcon3 = view.findViewById(R.id.dayIcon3) as ImageView
 
         val day = GregorianCalendar()
         day.time = getItem(position)
 
         // Loading an image of the event
-        if (dayIcon != null) {
-            loadIcon(dayIcon, day)
-        }
+        loadIcon(listOf(dayIcon, dayIcon2, dayIcon3), day)
 
         setLabelColors(dayLabel, day)
 
@@ -107,20 +107,22 @@ internal class CalendarDayAdapter(private val mCalendarPageAdapter: CalendarPage
         return !mCalendarProperties.disabledDays.contains(day)
     }
 
-    private fun loadIcon(dayIcon: ImageView, day: Calendar) {
+    private fun loadIcon(dayIcons: List<ImageView>, day: Calendar) {
         if (mCalendarProperties.eventDays == null || !mCalendarProperties.eventsEnabled) {
-            dayIcon.visibility = View.GONE
+            dayIcons.forEach { it.visibility = View.GONE }
             return
         }
 
         Stream.of<EventDay>(mCalendarProperties.eventDays).filter { eventDate -> eventDate.calendar == day }.forEachIndexed { index, eventDay ->
-            ImageUtils.loadImage(dayIcon, eventDay.imageDrawable)
+            if(dayIcons.count() > index) {
+                val icon = dayIcons[index]
+                ImageUtils.loadImage(icon, eventDay.imageDrawable)
+                icon.visibility = View.VISIBLE
+                // If a day doesn't belong to current month then image is transparent
+                if (!isCurrentMonthDay(day) || !isActiveDay(day)) {
+                    icon.alpha = 0.12f
+                }
+            }
         }
-
-        // If a day doesn't belong to current month then image is transparent
-        if (!isCurrentMonthDay(day) || !isActiveDay(day)) {
-            dayIcon.alpha = 0.12f
-        }
-
     }
 }
