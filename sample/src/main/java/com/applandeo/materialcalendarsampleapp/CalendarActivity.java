@@ -30,23 +30,25 @@ public class CalendarActivity extends AppCompatActivity {
         List<EventDay> events = new ArrayList<>();
 
         Calendar calendar = Calendar.getInstance();
-        events.add(new EventDay(calendar, DrawableUtils.getCircleDrawableWithText(this, "M")));
+        events.add(new EventDay(calendar, R.drawable.ic_dot_orange));
+        events.add(new EventDay(calendar, R.drawable.ic_dot_green));
+        events.add(new EventDay(calendar, R.drawable.ic_dot_blue));
 
         Calendar calendar1 = Calendar.getInstance();
         calendar1.add(Calendar.DAY_OF_MONTH, 2);
-        events.add(new EventDay(calendar1, R.drawable.sample_icon_2));
+        events.add(new EventDay(calendar1, R.drawable.ic_dot));
 
         Calendar calendar2 = Calendar.getInstance();
         calendar2.add(Calendar.DAY_OF_MONTH, 5);
-        events.add(new EventDay(calendar2, R.drawable.sample_icon_3));
+        events.add(new EventDay(calendar1, R.drawable.ic_dot_orange));
 
         Calendar calendar3 = Calendar.getInstance();
         calendar3.add(Calendar.DAY_OF_MONTH, 7);
-        events.add(new EventDay(calendar3, R.drawable.sample_four_icons));
+        events.add(new EventDay(calendar2, R.drawable.ic_dot_green));
 
         Calendar calendar4 = Calendar.getInstance();
         calendar4.add(Calendar.DAY_OF_MONTH, 13);
-        events.add(new EventDay(calendar4, DrawableUtils.getThreeDots(this)));
+        events.add(new EventDay(calendar3, R.drawable.ic_dot_blue));
 
         CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
 
