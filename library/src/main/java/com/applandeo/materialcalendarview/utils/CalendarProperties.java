@@ -139,7 +139,7 @@ public class CalendarProperties {
             return ContextCompat.getColor(mContext, R.color.defaultColor);
         }
 
-        return mSelectionColor;
+        return ContextCompat.getColor(mContext,  mSelectionColor);
     }
 
     public void setSelectionColor(int selectionColor) {

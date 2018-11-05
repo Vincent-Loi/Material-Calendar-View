@@ -213,6 +213,10 @@ public class CalendarView extends LinearLayout {
         AppearanceUtils.setForwardButtonImage(getRootView(), mCalendarProperties.getPreviousButtonSrc());
     }
 
+    public void setSelectionColor(int color){
+        mCalendarProperties.setSelectionColor(color);
+    }
+
     private void setCalendarRowLayout() {
         if (mCalendarProperties.getEventsEnabled()) {
             mCalendarProperties.setItemLayoutResource(R.layout.calendar_view_day);

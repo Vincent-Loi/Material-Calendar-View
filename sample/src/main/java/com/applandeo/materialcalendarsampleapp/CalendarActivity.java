@@ -65,6 +65,9 @@ public class CalendarActivity extends AppCompatActivity {
 
         calendarView.setDisabledDays(getDisabledDays());
 
+        calendarView.setHeaderColor(R.color.yellow);
+        calendarView.setSelectionColor(R.color.yellow);
+
         calendarView.setOnDayClickListener(eventDay ->
                 Toast.makeText(getApplicationContext(),
                         eventDay.getCalendar().getTime().toString() + " "
